@@ -28,7 +28,7 @@ There might be some issues when using the script e.g there is no input parameter
 4. Format virtual device mapper to ext4 file system.
 5. Mount virtual device mapper at `/backups` path. Consider changing the owner of this directory to your current user `sudo chown sebastian:sebastian /backups`.
 8. Make sure that your current user has exec permission for the `sudo chmod +x reconnect-encrypted-disk.sh` script.
-9. Configure auto mounting on boot up you adding config to `/etc/crypttab` and `/etc/fstab`.
+9. Configure auto mounting on boot up by adding config to `/etc/crypttab` and `/etc/fstab`.
 10. Add record to sudo crontab configuration that will run `reconnect-encrypted-disk.sh` 1 minute before running the backup script to make sure that the disk will be mounted properly at the time of running the backup script. Run `sudo crontab -e`, add record `29 7,19 * * * /home/sebastian/.machineconfig/scripts/backups/system-with-duplicity/reconnect-encrypted-disk.sh <external disk block UUID: 02fba679-148c-40d9-8087-aad653f551a4>`.
 11. Prevent unmounting or unplugging when the backup is in progress. It may cause a data loss.
 12. Before unplugging the external disk, unmount the virtual device mapper and luksClose the virtual device mapper.
